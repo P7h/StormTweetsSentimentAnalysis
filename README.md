@@ -14,7 +14,7 @@ This application has been tested in:<br>
 
 ## Features
 * Application retrieves tweets from Twitter stream (using [Twitter4J](http://twitter4j.org)).<br>
-* It calculates sentiment analysis of the tweets every 30 seconds.
+* It analyses sentiments of the tweets from US.
 * There are three different objects within a tweet that we can use to determine it’s origin. This application utilizes all the three of them and prioritizes in the following order [high to low]:
 	* The coordinates object
 	* The place object
@@ -32,10 +32,11 @@ This application has been tested in:<br>
 
 
 ## Configuration
-Please check the [`config.properties`](src/main/resources/config.properties) and add your own values and complete the integration of Twitter API to your application by looking at your values from [Twitter Developer Page](https://dev.twitter.com/apps).<br>
+Please check the [`config.properties`](src/main/resources/config.properties#L3-6) and add your own values and complete the integration of Twitter API to your application by looking at your values from [Twitter Developer Page](https://dev.twitter.com/apps).<br>
 If you did not create a Twitter App before, then please create a new Twitter App where you will get all the required values of `config.properties` afresh and then populate them here without any mistake.<br>
 Also please add the value of Bing Maps API Key to [`config.properties`](src/main/resources/config.properties#L10), as that will be used for getting the reverse geocode location using Latitude and Longitude.<br>
-And finally please check [but don't modify] the [`AFINN-111.txt`](src/main/resources/AFINN-111.txt) file to see the pre-computed sentiment scores of ~2500 words / phrases.
+If you do not have Bing Maps API Key, please check [Getting Started with Bing Maps](http://msdn.microsoft.com/en-us/library/ff428643.aspx) for signup and other information.<br>
+And finally please check [but _do not modify_] the [`AFINN-111.txt`](src/main/resources/AFINN-111.txt) file to see the pre-computed sentiment scores of ~2500 words / phrases.
 
 ## Dependencies
 * Storm v0.8.2
@@ -54,7 +55,8 @@ You need the following on your machine:
 * Oracle JDK >= 1.7.x
 * Apache Maven >= 3.0.5
 * Clone this repo and import as an existing Maven project to either Eclipse IDE or IntelliJ IDEA.
-* This application uses [Google Guava](https://code.google.com/p/guava-libraries) for making life simple while using Collections.
+* This application uses [Google Guava](https://code.google.com/p/guava-libraries) for making life simple while using Collections and other generic stuff.
+* This application also uses [Jackson](http://jackson.codehaus.org) for unmarshalling the JSON response got from Bing Maps API.
 * Requires ZooKeeper, JZMQ, ZeroMQ installed and configured in case of executing this project in distributed mode i.e. Storm Cluster.<br>
 	- Follow the steps mentioned [here](https://github.com/nathanmarz/storm/wiki/Setting-up-a-Storm-cluster) for more details on setting up a Storm Cluster.<br>
 

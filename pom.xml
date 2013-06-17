@@ -10,7 +10,7 @@
     <name>StormTweetsSentimentAnalysis</name>
     <description>Application to demonstrate Storm distributed framework by performing sentiment analysis of tweets of
         States of US in
-        real-time. Uses AFINN Methodology and sentiment scores for the same.
+        real-time. Uses AFINN sentiment scores of words for determining the sentiments of States of USA.
     </description>
 
     <properties>
