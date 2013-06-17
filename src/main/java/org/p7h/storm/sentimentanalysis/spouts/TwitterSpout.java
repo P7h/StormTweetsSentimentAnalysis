@@ -25,9 +25,9 @@ import twitter4j.conf.ConfigurationBuilder;
  */
 public final class TwitterSpout extends BaseRichSpout {
 	private static final Logger LOGGER = LoggerFactory.getLogger(TwitterSpout.class);
-	private static final long serialVersionUID = -1506848123321622185L;
+	private static final long serialVersionUID = -1590819539847344427L;
 
-	private SpoutOutputCollector _collector;
+	private SpoutOutputCollector _outputCollector;
     private LinkedBlockingQueue<Status> _queue;
     private TwitterStream _twitterStream;
 
@@ -35,7 +35,7 @@ public final class TwitterSpout extends BaseRichSpout {
 	public final void open(final Map conf, final TopologyContext context,
 	                 final SpoutOutputCollector collector) {
 		this._queue = new LinkedBlockingQueue<>(1000);
-		this._collector = collector;
+		this._outputCollector = collector;
 
 		final StatusListener statusListener = new StatusListener() {
 			@Override
@@ -68,9 +68,9 @@ public final class TwitterSpout extends BaseRichSpout {
 		try {
 			properties.load(TwitterSpout.class.getClassLoader()
 					                .getResourceAsStream(Constants.CONFIG_PROPERTIES_FILE));
-		} catch (final IOException exception) {
+		} catch (final IOException ioException) {
 			//Should not occur. If it does, we cant continue. So exiting the program!
-			LOGGER.error(exception.toString());
+			LOGGER.error(ioException.getMessage(), ioException);
 			System.exit(1);
 		}
 
@@ -84,14 +84,17 @@ public final class TwitterSpout extends BaseRichSpout {
 		this._twitterStream = new TwitterStreamFactory(configurationBuilder.build()).getInstance();
 		this._twitterStream.addListener(statusListener);
 
-		/* //Ideally we should be able to limit our tweets to those originating from US. But I am not sure how to pass the location coordinates for the same.
-		final FilterQuery query = new FilterQuery();
-		double[][] loc={{-118.288937,34.01828735},
-				               {-118.279474,34.023836}};
-		query.locations(loc);
-		this._twitterStream.filter(query);*/
-		//Returns a small random sample of all public statuses.
-		this._twitterStream.sample();
+		//Our usecase computes the sentiments of States of USA based on tweets.
+		//So we will apply filter with US bounding box so that we get tweets specific to US only.
+		final FilterQuery filterQuery = new FilterQuery();
+
+		//Bounding Box for United States.
+		//For more info on how to get these coordinates, check:
+		//http://www.quora.com/Geography/What-is-the-longitude-and-latitude-of-a-bounding-box-around-the-continental-United-States
+		final double[][] boundingBoxOfUS = {{-124.848974, 24.396308},
+				                                   {-66.885444, 49.384358}};
+		filterQuery.locations(boundingBoxOfUS);
+		this._twitterStream.filter(filterQuery);
 	}
 
 	@Override
@@ -101,18 +104,14 @@ public final class TwitterSpout extends BaseRichSpout {
 			//If _queue is empty sleep the spout thread so it doesn't consume resources.
 			Utils.sleep(500);
         } else {
-			final Place place = status.getPlace();
-			final User user = status.getUser();
-			if ((null != place && null != place.getCountryCode() && "US".equalsIgnoreCase(place.getCountryCode())) ||
-					(null != user && null != user.getLocation() && 1 < user.getLocation().length()
-						 && "US".equalsIgnoreCase(user.getLocation().substring(user.getLocation().length() - 2)))) {
-				this._collector.emit(new Values(status));
-			}
+			//Emit the complete tweet to the Bolt.
+			this._outputCollector.emit(new Values(status));
 		}
 	}
 
 	@Override
 	public final void close() {
+		this._twitterStream.cleanUp();
 		this._twitterStream.shutdown();
 	}
 
@@ -125,7 +124,8 @@ public final class TwitterSpout extends BaseRichSpout {
 	}
 
 	@Override
-	public final void declareOutputFields(final OutputFieldsDeclarer declarer) {
-		declarer.declare(new Fields("tweet"));
+	public final void declareOutputFields(final OutputFieldsDeclarer outputFieldsDeclarer) {
+		//For emitting the complete tweet to the Bolt.
+		outputFieldsDeclarer.declare(new Fields("tweet"));
 	}
 }

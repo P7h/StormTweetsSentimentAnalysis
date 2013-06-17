@@ -20,21 +20,21 @@ This application has been tested in:<br>
 	* The place object
 	* The user object
 * For reverse geocoding, this application uses Bing Maps API. 
-	* For more information and sign up procedure, please check [Getting Started with Bing Maps](http://msdn.microsoft.com/en-us/library/ff428643.aspx).
+	* For more information and sign up, please check [Getting Started with Bing Maps](http://msdn.microsoft.com/en-us/library/ff428643.aspx).
 	* Please note that you would need Windows Live account for signing up for Bing Maps API key.
-	* Also, please consider opting for Basic Plan for Bing Maps API, as that is better for our usage.
+	* Also, please consider opting for Basic Plan for Bing Maps API, as that is better for our usage. As of 18th June, 2013, limit is 50k requests for 24 hours.
 * This application uses [AFINN](http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010) which contains a list of pre-computed sentiment scores.
 	* These words are used to determine sentiment of the each tweet which is retrieved using Streaming API.
 * After processing, the application logs the sentiment values of the states to the console and also to a log file.<br>
 * This gives us the most happiest state of US and most unhappiest state as well.
-* As of current day, this codebase has very minimal comments. I will be adding more comments as and when I get time.
+* As of current day, this codebase has been updated with decent comments, wherever required.
 * Also this project has been made compatible with both Eclipse IDE and IntelliJ IDEA. Import the project in your favorite IDE [which has Maven plugin installed] and you can quickly follow the code.
 
 
 ## Configuration
 Please check the [`config.properties`](src/main/resources/config.properties) and add your own values and complete the integration of Twitter API to your application by looking at your values from [Twitter Developer Page](https://dev.twitter.com/apps).<br>
 If you did not create a Twitter App before, then please create a new Twitter App where you will get all the required values of `config.properties` afresh and then populate them here without any mistake.<br>
-Also please add the value of Bing Maps API Key to [`config.properties`](src/main/resources/config.properties), as that will be used for getting the reverse geocode location using Latitude and Longitude.<br>
+Also please add the value of Bing Maps API Key to [`config.properties`](src/main/resources/config.properties#L10), as that will be used for getting the reverse geocode location using Latitude and Longitude.<br>
 And finally please check [but don't modify] the [`AFINN-111.txt`](src/main/resources/AFINN-111.txt) file to see the pre-computed sentiment scores of ~2500 words / phrases.
 
 ## Dependencies

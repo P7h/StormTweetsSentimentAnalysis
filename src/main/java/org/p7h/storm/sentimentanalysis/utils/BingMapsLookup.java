@@ -14,7 +14,10 @@ import org.slf4j.LoggerFactory;
 
 public final class BingMapsLookup {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BingMapsLookup.class);
+	private static final String BING_MAPS_URL_START = "http://dev.virtualearth.net/REST/v1/Locations/";
+	private static final String BING_MAPS_URL_MIDDLE_JSON = "?o=json&key=";
 
+	//Dummy and temporary method for Unit testing Bing Maps API.
 	public static void main(String[] args) {
 		double latitude = 33.98067209;
 		double longitude= -84.07507873;
@@ -26,14 +29,21 @@ public final class BingMapsLookup {
 		}
 	}
 
+	/**
+	 * Reverse geocodes the State from the Latitude and Longitude received.
+	 *
+	 * @param latitude Latitude present in the tweet
+	 * @param longitude Longitude present in the tweet
+	 * @return State of the Tweet as got from Bing Maps API reponse.
+	 */
 	public final static Optional<String> reverseGeocodeFromLatLong(final double latitude, final double longitude) {
 		final StringBuilder bingMapsURL = new StringBuilder();
 		bingMapsURL
-				.append("http://dev.virtualearth.net/REST/v1/Locations/")
+				.append(BING_MAPS_URL_START)
 				.append(latitude)
 				.append(",")
 				.append(longitude)
-				.append("?o=json&key=")
+				.append(BING_MAPS_URL_MIDDLE_JSON)
 				.append(Constants.BING_MAPS_API_KEY_VALUE);
 		LOGGER.debug("BingMapsURL==>{}", bingMapsURL.toString());
 
@@ -48,12 +58,14 @@ public final class BingMapsLookup {
 				return getStateFromJSONResponse(inputStream);
 			}
 		} catch (final Throwable throwable) {
+			LOGGER.error(throwable.getMessage(), throwable);
 			throwable.printStackTrace();
 		} finally{
 			if(null != inputStream) {
 				try {
 					inputStream.close();
 				} catch (final IOException ioException) {
+					LOGGER.error(ioException.getMessage(), ioException);
 					ioException.printStackTrace();
 				}
 			}
@@ -62,6 +74,13 @@ public final class BingMapsLookup {
 		return Optional.absent();
 	}
 
+	/**
+	 * Gets the State of the Tweet by checking the InputStream.
+	 * For a sample Bing Maps API response, please check the snippet at the end of this file.
+	 *
+	 * @param inputStream Bing Maps API response.
+	 * @return State of the Tweet as got from Bing Maps API reponse.
+	 */
 	@SuppressWarnings("unchecked")
 	private final static Optional<String> getStateFromJSONResponse(InputStream inputStream) {
 		final ObjectMapper mapper = new ObjectMapper();
@@ -70,17 +89,23 @@ public final class BingMapsLookup {
 			final Map<String,Object> bingResponse = (Map<String, Object>) mapper.readValue(inputStream, Map.class);
 			if(200 == Integer.parseInt(String.valueOf(bingResponse.get("statusCode")))) {
 				final List<Map<String, Object>> resourceSets = (List<Map<String, Object>>) bingResponse.get("resourceSets");
-				final List<Map<String, Object>> resources = (List<Map<String, Object>>) resourceSets.get(0).get("resources");
-				final Map<String, Object> address = (Map<String, Object>) resources.get(0).get("address");
-				LOGGER.debug("State==>{}", address.get("adminDistrict"));
-				return Optional.of((String) address.get("adminDistrict"));
+				if(resourceSets != null && resourceSets.size() > 0){
+					final List<Map<String, Object>> resources = (List<Map<String, Object>>) resourceSets.get(0).get("resources");
+					if(resources != null && resources.size() > 0){
+						final Map<String, Object> address = (Map<String, Object>) resources.get(0).get("address");
+						LOGGER.debug("State==>{}", address.get("adminDistrict"));
+						return Optional.of((String) address.get("adminDistrict"));
+					}
+				}
 			}
 		} catch (final IOException ioException) {
+			LOGGER.error(ioException.getMessage(), ioException);
 			ioException.printStackTrace();
 		}
 		return Optional.absent();
 	}
 }
+//========================================================================================================
 //Sample JSON response from Bing Maps API
 /*
 {
@@ -144,3 +169,4 @@ public final class BingMapsLookup {
     "traceId": "423cefc66e6d4e858661ee14d4f85c5e|BAYM000169|02.00.139.700|BY2MSNVM001074, BY2IPEVM000006"
 }
  */
+//========================================================================================================

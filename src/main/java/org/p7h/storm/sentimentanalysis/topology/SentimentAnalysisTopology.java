@@ -6,15 +6,17 @@ import backtype.storm.StormSubmitter;
 import backtype.storm.generated.AlreadyAliveException;
 import backtype.storm.generated.InvalidTopologyException;
 import backtype.storm.topology.TopologyBuilder;
+import backtype.storm.tuple.Fields;
 import backtype.storm.utils.Utils;
 import org.p7h.storm.sentimentanalysis.bolts.SentimentCalculatorBolt;
+import org.p7h.storm.sentimentanalysis.bolts.StateLocatorBolt;
 import org.p7h.storm.sentimentanalysis.spouts.TwitterSpout;
 import org.p7h.storm.sentimentanalysis.utils.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Orchestrates the elements and forms a Topology to find the most happiest state.
+ * Orchestrates the elements and forms a Topology to find the most happiest state by analyzing and processing Tweets.
  *
  * @author - Prashanth Babu
  */
@@ -29,9 +31,11 @@ public final class SentimentAnalysisTopology {
 
 			final TopologyBuilder topologyBuilder = new TopologyBuilder();
 			topologyBuilder.setSpout("twitterspout", new TwitterSpout());
+			topologyBuilder.setBolt("statelocatorbolt", new StateLocatorBolt())
+					.shuffleGrouping("twitterspout");
 			//Create Bolt with the frequency of logging [in seconds].
 			topologyBuilder.setBolt("sentimentcalculatorbolt", new SentimentCalculatorBolt(30))
-					.shuffleGrouping("twitterspout");
+					.fieldsGrouping("statelocatorbolt", new Fields("state"));
 
 			//Submit it to the cluster, or submit it locally
 			if (null != args && 0 < args.length) {
@@ -41,12 +45,21 @@ public final class SentimentAnalysisTopology {
 				config.setMaxTaskParallelism(10);
 				final LocalCluster localCluster = new LocalCluster();
 				localCluster.submitTopology(Constants.TOPOLOGY_NAME, config, topologyBuilder.createTopology());
-				//Run this topology for 120 seconds so that we can complete processing of decent # of tweets.
-				Utils.sleep(120 * 1000);
+				//Run this topology for 300 seconds so that we can complete processing of decent # of tweets.
+				Utils.sleep(300 * 1000);
 
 				LOGGER.info("Shutting down the cluster...");
 				localCluster.killTopology(Constants.TOPOLOGY_NAME);
 				localCluster.shutdown();
+
+				Runtime.getRuntime().addShutdownHook(new Thread()	{
+					@Override
+					public void run()	{
+						LOGGER.info("Shutting down the cluster...");
+						localCluster.killTopology(Constants.TOPOLOGY_NAME);
+						localCluster.shutdown();
+					}
+				});
 			}
 		} catch (final AlreadyAliveException | InvalidTopologyException exception) {
 			//Deliberate no op;

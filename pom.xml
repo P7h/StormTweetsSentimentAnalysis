@@ -8,8 +8,10 @@
 
     <url>http://www.P7h.org</url>
     <name>StormTweetsSentimentAnalysis</name>
-    <description>Application to demonstrate Storm distributed framework by performing sentiment analysis of tweets US state-wise in
-        real-time.</description>
+    <description>Application to demonstrate Storm distributed framework by performing sentiment analysis of tweets of
+        States of US in
+        real-time. Uses AFINN Methodology and sentiment scores for the same.
+    </description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
