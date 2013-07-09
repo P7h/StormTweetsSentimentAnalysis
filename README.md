@@ -2,10 +2,10 @@
 ----------
 
 ## Introduction
-This repository contains an application which is built to demonstrate as an example of Storm distributed framework by performing sentiment analysis of tweets originating from U.S. in real-time.
+This repository contains an application which is built to demonstrate as an example of Storm distributed framework by performing sentiment analysis of tweets originating from U.S. in real-time. This Topology retrieves tweets originating from US and computes the sentiment scores of States [based on tweets] continuously i.e. till the time the topology is killed. User has to explicitly kill the topology for exiting the application.
 
-[Storm](http://storm-project.net) is a free and open source distributed realtime computation system, developed at BackType by Nathan Marz and team. It has been open sourced by Twitter [post BackType acquisition] in August, 2011.<br>
-This application has been developed and tested with Storm v0.8.2 on CentOS. Application may or may not work with earlier or later versions than Storm v0.8.2.<br>
+[Storm](http://storm-project.net) is a free and open source distributed real-time computation system, developed at BackType by Nathan Marz and team. It has been open sourced by Twitter [post BackType acquisition] in August, 2011.<br>
+This application has been developed and tested with Storm v0.8.2 [on Windows 7 in local mode]. Application may or may not work with earlier or later versions than Storm v0.8.2.<br>
 
 This application has been tested in:<br>
 
@@ -15,28 +15,30 @@ This application has been tested in:<br>
 ## Features
 * Application retrieves tweets from Twitter stream (using [Twitter4J](http://twitter4j.org)).<br>
 * It analyses sentiments of the tweets from US.
-* There are three different objects within a tweet that we can use to determine it’s origin. This application utilizes all the three of them and prioritizes in the following order [high to low]:
-	* The coordinates object
-	* The place object
-	* The user object
+* There are three different objects within a tweet that we can use to determine it’s origin. This application tries to find the location using all the three options and prioritizes location received in the following order [high to low]:
+	* The coordinates object.
+	* The place object.
+	* The user object.
 * For reverse geocoding, this application uses Bing Maps API. 
 	* For more information and sign up, please check [Getting Started with Bing Maps](http://msdn.microsoft.com/en-us/library/ff428643.aspx).
 	* Please note that you would need Windows Live account for signing up for Bing Maps API key.
-	* Also, please consider opting for Basic Plan for Bing Maps API, as that is better for our usage. As of 18th June, 2013, limit is 50k requests for 24 hours.
+	* Also, please consider opting for Basic Plan for Bing Maps API, as that is better for our usage. As of 18th June, 2013, limit is 50k requests for 24 hours in Basic Plan.
+	* I chose Bing Maps and not Google Maps since Google Maps is too restrictive for our usage, as it has a limit of only 2500 requests per day.
 * This application uses [AFINN](http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010) which contains a list of pre-computed sentiment scores.
 	* These words are used to determine sentiment of the each tweet which is retrieved using Streaming API.
-* After processing, the application logs the sentiment values of the states to the console and also to a log file.<br>
-* This gives us the most happiest state of US and most unhappiest state as well.
+* While processing, after every 30 seconds [configurable], the application logs the sentiment values of the states to the console and simultaneously to a log file using Logback.<br>
+* By understanding sentiment values, we can get the most happiest state of US and most unhappiest state as well.
 * As of current day, this codebase has been updated with decent comments, wherever required.
 * Also this project has been made compatible with both Eclipse IDE and IntelliJ IDEA. Import the project in your favorite IDE [which has Maven plugin installed] and you can quickly follow the code.
 
 
 ## Configuration
-Please check the [`config.properties`](src/main/resources/config.properties#L3-6) and add your own values and complete the integration of Twitter API to your application by looking at your values from [Twitter Developer Page](https://dev.twitter.com/apps).<br>
-If you did not create a Twitter App before, then please create a new Twitter App where you will get all the required values of `config.properties` afresh and then populate them here without any mistake.<br>
-Also please add the value of Bing Maps API Key to [`config.properties`](src/main/resources/config.properties#L10), as that will be used for getting the reverse geocode location using Latitude and Longitude.<br>
-If you do not have Bing Maps API Key, please check [Getting Started with Bing Maps](http://msdn.microsoft.com/en-us/library/ff428643.aspx) for signup and other information.<br>
-And finally please check [but _do not modify_] the [`AFINN-111.txt`](src/main/resources/AFINN-111.txt) file to see the pre-computed sentiment scores of ~2500 words / phrases.
+* Please check the [`config.properties`](src/main/resources/config.properties#L3-6) and add your own values and complete the integration of Twitter API to your application by looking at your values from [Twitter Developer Page](https://dev.twitter.com/apps).<br>
+	* If you did not create a Twitter App before, then please create a new Twitter App where you will get all the required values of `config.properties` afresh and then populate them here without any mistake.<br>
+* Also please add the value of Bing Maps API Key to [`config.properties`](src/main/resources/config.properties#L10), as that will be used for getting the reverse geocode location using Latitude and Longitude.<br>
+	* If you do not have Bing Maps API Key, please check [Getting Started with Bing Maps](http://msdn.microsoft.com/en-us/library/ff428643.aspx) for signup and other information.<br>
+* And finally please check [but _do not modify_] the [`AFINN-111.txt`](src/main/resources/AFINN-111.txt) file to see the pre-computed sentiment scores of ~2500 words / phrases.
+	* For more info on AFINN, please check its [`AFINN-README.txt`](src/main/resources/AFINN-README.txt) and also check his [paper](http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010).
 
 ## Dependencies
 * Storm v0.8.2
@@ -78,7 +80,7 @@ or
 Distributed mode requires a complete and proper Storm Cluster setup. Please refer this [wiki](https://github.com/nathanmarz/storm/wiki/Setting-up-a-Storm-cluster) for setting up a Storm Cluster.<br>
 In distributed mode, after starting Nimbus and Supervisors on individual machines, this application can be executed on the master [or Nimbus] machine by invoking the following on the command line:
 
-    storm jar target/storm-sentiment-analysis-0.1-jar-with-dependencies.jar org.p7h.storm.sentimentanalysis.topology.SentimentAnalysisTopology SentimentAnalysis
+    storm jar target/storm-sentiment-analysis-0.1.jar org.p7h.storm.sentimentanalysis.topology.SentimentAnalysisTopology SentimentAnalysis
 
 ## Problems
 If you find any issues, please report them either raising an [issue](https://github.com/P7h/StormTweetsSentimentAnalysis/issues) here on GitHub or alert me on my Twitter handle [@P7h](http://twitter.com/P7h). Or even better, please send a [pull request](https://github.com/P7h/StormTweetsSentimentAnalysis/pulls).
