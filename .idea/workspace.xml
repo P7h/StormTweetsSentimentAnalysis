@@ -16,8 +16,9 @@
     <file path="/SentimentCountBolt.java" changelist="506307eb-bb4d-4443-83a2-8c27e2a5326e" time="1371419877581" ignored="false" />
     <file path="/SentimentCalculateBolt.java" changelist="506307eb-bb4d-4443-83a2-8c27e2a5326e" time="1371413066270" ignored="false" />
     <file path="/BingMapsLookup.java" changelist="506307eb-bb4d-4443-83a2-8c27e2a5326e" time="1371420851638" ignored="false" />
-    <file path="/SentimentCalculatorBolt.java" changelist="506307eb-bb4d-4443-83a2-8c27e2a5326e" time="1371417884586" ignored="false" />
+    <file path="/SentimentCalculatorBolt.java" changelist="506307eb-bb4d-4443-83a2-8c27e2a5326e" time="1373528359224" ignored="false" />
     <file path="/pom.xml" changelist="506307eb-bb4d-4443-83a2-8c27e2a5326e" time="1371422569562" ignored="false" />
+    <file path="/SentimentValueOrdering.java" changelist="506307eb-bb4d-4443-83a2-8c27e2a5326e" time="1373528256056" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,76 +79,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="BingMapsLookup.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/utils/BingMapsLookup.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="45" selection-start="773" selection-end="773" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1921#1951#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TwitterSpout.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/spouts/TwitterSpout.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="87" column="28" selection-start="3153" selection-end="3153" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="38" selection-start="438" selection-end="466" vertical-scroll-proportion="-5.8846154">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.properties" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/config.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="22" selection-start="255" selection-end="277" vertical-scroll-proportion="0.11817279">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SentimentCalculatorBolt.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="SentimentCalculatorBolt.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/bolts/SentimentCalculatorBolt.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="189" column="57" selection-start="7552" selection-end="7552" vertical-scroll-proportion="0.0">
+            <state line="145" column="68" selection-start="5384" selection-end="5384" vertical-scroll-proportion="0.2384">
               <folding>
-                <element signature="e#2130#2266#0" expanded="true" />
-                <element signature="e#2477#2616#0" expanded="true" />
-                <element signature="e#3606#3636#0" expanded="true" />
-                <element signature="e#8225#8259#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SentimentAnalysisTopology.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/topology/SentimentAnalysisTopology.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="28" selection-start="1895" selection-end="1898" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="docComment;class#SentimentAnalysisTopology#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Constants.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/utils/Constants.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="69" selection-start="993" selection-end="1010" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#6052#6094#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -163,12 +100,10 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/logback.xml" />
         <option value="$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/bolts/HashtagCountBolt.java" />
         <option value="$PROJECT_DIR$/src/main/java/domain/Point.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/domain/Point.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/domain/BingResponse.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/config.properties" />
         <option value="$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/utils/BingResponse.java" />
         <option value="$PROJECT_DIR$/src/main/resources/config_.properties" />
         <option value="$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/bolts/SentimentCountBolt.java" />
@@ -176,9 +111,11 @@
         <option value="$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/bolts/SentimentCalculateBolt.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/utils/Constants.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/utils/BingMapsLookup.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/bolts/SentimentCalculatorBolt.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/topology/SentimentAnalysisTopology.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/spouts/TwitterSpout.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/config.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/utils/SentimentValueOrdering.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/bolts/SentimentCalculatorBolt.java" />
       </list>
     </option>
   </component>
@@ -195,8 +132,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="22" />
-    <option name="width" value="2064" />
-    <option name="height" value="1138" />
+    <option name="width" value="1382" />
+    <option name="height" value="754" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -243,7 +180,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -407,6 +343,7 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -418,14 +355,15 @@
     <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="Errors" />
     <property name="MemberChooser.sorted" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -527,30 +465,30 @@
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="SpellCheckerSettings" BundledDictionaries="3" BundledDictionary0="jetbrains.dic" BundledDictionary1="english.dic" BundledDictionary2="css.dic" Folders="0" Dictionaries="0" />
   <component name="ToolWindowManager">
-    <frame x="-8" y="22" width="2064" height="1138" extended-state="0" />
+    <frame x="-8" y="22" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32657003" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32872504" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.225" sideWeight="0.28725037" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15134865" sideWeight="0.67086154" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18560606" sideWeight="0.67086154" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32913843" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="92" y="122" width="1182" height="554" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32657003" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -630,7 +568,9 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/spouts/TwitterSpout.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="81" column="88" selection-start="2775" selection-end="2775" vertical-scroll-proportion="0.0">
-          <folding />
+          <folding>
+            <element signature="e#3012#3083#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -644,16 +584,16 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/utils/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="34" selection-start="536" selection-end="536" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/bolts/SentimentCalculatorBolt.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="23" column="83" selection-start="802" selection-end="820" vertical-scroll-proportion="0.0">
-          <folding />
+          <folding>
+            <element signature="e#6052#6094#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -672,68 +612,69 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/utils/Constants.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config.properties">
+      <provider editor-type-id="ResourceBundle">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="69" selection-start="993" selection-end="1010" vertical-scroll-proportion="0.0">
+        <state line="10" column="13" selection-start="591" selection-end="591" vertical-scroll-proportion="0.272">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/utils/SentimentValueOrdering.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="56" selection-start="175" selection-end="175" vertical-scroll-proportion="0.1904">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/topology/SentimentAnalysisTopology.java">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="28" selection-start="1895" selection-end="1898" vertical-scroll-proportion="0.0">
+        <state line="9" column="38" selection-start="438" selection-end="466" vertical-scroll-proportion="0.028380634">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/spouts/TwitterSpout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="74" column="9" selection-start="2314" selection-end="2314" vertical-scroll-proportion="0.0272">
           <folding>
-            <element signature="docComment;class#SentimentAnalysisTopology#0" expanded="true" />
+            <element signature="e#3012#3083#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/utils/BingMapsLookup.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="45" selection-start="773" selection-end="773" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1921#1951#0" expanded="true" />
-          </folding>
+        <state line="24" column="31" selection-start="917" selection-end="917" vertical-scroll-proportion="0.027777778">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/topology/SentimentAnalysisTopology.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="28" selection-start="1895" selection-end="1898" vertical-scroll-proportion="0.2656">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/utils/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="69" selection-start="993" selection-end="1010" vertical-scroll-proportion="0.5">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/bolts/SentimentCalculatorBolt.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="189" column="57" selection-start="7552" selection-end="7552" vertical-scroll-proportion="0.0">
+        <state line="145" column="68" selection-start="5384" selection-end="5384" vertical-scroll-proportion="0.2384">
           <folding>
-            <element signature="e#2130#2266#0" expanded="true" />
-            <element signature="e#2477#2616#0" expanded="true" />
-            <element signature="e#3606#3636#0" expanded="true" />
-            <element signature="e#8225#8259#0" expanded="true" />
+            <element signature="e#6052#6094#0" expanded="true" />
           </folding>
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/p7h/storm/sentimentanalysis/spouts/TwitterSpout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="28" selection-start="3153" selection-end="3153" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="38" selection-start="438" selection-end="466" vertical-scroll-proportion="-5.8846154">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="22" selection-start="255" selection-end="277" vertical-scroll-proportion="0.11817279">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="ResourceBundle">
-        <state />
       </provider>
     </entry>
   </component>

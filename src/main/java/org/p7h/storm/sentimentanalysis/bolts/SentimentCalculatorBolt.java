@@ -2,10 +2,7 @@ package org.p7h.storm.sentimentanalysis.bolts;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.SortedMap;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 import backtype.storm.task.OutputCollector;
@@ -20,6 +17,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.io.Resources;
 import org.p7h.storm.sentimentanalysis.utils.Constants;
+import org.p7h.storm.sentimentanalysis.utils.SentimentValueOrdering;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import twitter4j.Status;
@@ -145,7 +143,11 @@ public final class SentimentCalculatorBolt extends BaseRichBolt {
 	private final void logSentimentsOfStates() {
 		final StringBuilder dumpSentimentsToLog = new StringBuilder();
 
-		for (final Map.Entry<String, Integer> state : this.stateSentimentMap.entrySet()) {
+		//Sort the Map before logging output based on the sentiment value so that we can get the happiest and unhappiest state.
+		final List<Map.Entry<String, Integer>> list = new ArrayList<>(stateSentimentMap.entrySet());
+		Collections.sort(list, new SentimentValueOrdering());
+
+		for (final Map.Entry<String, Integer> state : list) {
 			//Write to console and / or log file.
 			dumpSentimentsToLog
 					.append("\t")
@@ -160,6 +162,7 @@ public final class SentimentCalculatorBolt extends BaseRichBolt {
 		LOGGER.info("\n{}", dumpSentimentsToLog.toString());
 
 		//Decide whether to clear this map or not!
+		//We better not clear it so that we can guage the sentiment value better.
 		//stateSentimentMap.clear();
 	}
 }
