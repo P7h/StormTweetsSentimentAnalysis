@@ -1,6 +1,9 @@
 # StormTweetsSentimentAnalysis
 ----------
 
+## You might also be interested in checking out extension of this repo using D3 and Highcharts visualization of Twitter sentiment of states of US on [StormTweetsSentimentD3Viz](https://github.com/P7h/StormTweetsSentimentD3Viz).
+
+
 ## Introduction
 This repository contains an application which is built to demonstrate as an example of Storm distributed framework by performing sentiment analysis of tweets originating from U.S. in real-time. This Topology retrieves tweets originating from US and computes the sentiment scores of States [based on tweets] continuously i.e. till the time the topology is killed. User has to explicitly kill the topology for exiting the application.
 
