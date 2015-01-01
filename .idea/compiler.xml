@@ -26,8 +26,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="storm-sentiment-analysis" target="1.7" />
+      <module name="storm-sentiment-analysis" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
-

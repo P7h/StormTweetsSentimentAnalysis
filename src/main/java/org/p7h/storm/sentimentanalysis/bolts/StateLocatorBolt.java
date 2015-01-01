@@ -1,9 +1,5 @@
 package org.p7h.storm.sentimentanalysis.bolts;
 
-import java.io.IOException;
-import java.util.Map;
-import java.util.Properties;
-
 import backtype.storm.task.OutputCollector;
 import backtype.storm.task.TopologyContext;
 import backtype.storm.topology.OutputFieldsDeclarer;
@@ -20,6 +16,10 @@ import twitter4j.GeoLocation;
 import twitter4j.Place;
 import twitter4j.Status;
 
+import java.io.IOException;
+import java.util.Map;
+import java.util.Properties;
+
 /**
  * Gets the location of tweet by all 3 means and then fwds the State code with the tweet to the next Bolt.
  * There are three different objects within a tweet that we can use to determine it’s origin.
@@ -32,7 +32,7 @@ import twitter4j.Status;
  */
 public final class StateLocatorBolt extends BaseRichBolt {
 	private static final Logger LOGGER = LoggerFactory.getLogger(StateLocatorBolt.class);
-	private static final long serialVersionUID = -8097813984907419942L;
+	private static final long serialVersionUID = 791846845769636712L;
 	private OutputCollector _outputCollector;
 
 	public StateLocatorBolt() {
@@ -90,7 +90,7 @@ public final class StateLocatorBolt extends BaseRichBolt {
 		state = getStateFromTweetUserObject(status, state);
 
 		if(null == state || !Constants.CONSOLIDATED_STATE_CODES.contains(state)) {
-			LOGGER.info("Skipping invalid State: {}.", state);
+//			LOGGER.info("Skipping invalid State: {}.", state);
 			return Optional.absent();
 		}
 		LOGGER.debug("State:{}", state);

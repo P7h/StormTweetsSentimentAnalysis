@@ -45,8 +45,8 @@ public final class SentimentAnalysisTopology {
 				config.setMaxTaskParallelism(10);
 				final LocalCluster localCluster = new LocalCluster();
 				localCluster.submitTopology(Constants.TOPOLOGY_NAME, config, topologyBuilder.createTopology());
-				//Run this topology for 300 seconds so that we can complete processing of decent # of tweets.
-				Utils.sleep(300 * 1000);
+				//Run this topology for 120 seconds so that we can complete processing of decent # of tweets.
+				Utils.sleep(120 * 1000);
 
 				LOGGER.info("Shutting down the cluster...");
 				localCluster.killTopology(Constants.TOPOLOGY_NAME);

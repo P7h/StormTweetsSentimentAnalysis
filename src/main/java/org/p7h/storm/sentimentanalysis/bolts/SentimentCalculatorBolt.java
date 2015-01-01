@@ -1,10 +1,5 @@
 package org.p7h.storm.sentimentanalysis.bolts;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.*;
-import java.util.concurrent.TimeUnit;
-
 import backtype.storm.task.OutputCollector;
 import backtype.storm.task.TopologyContext;
 import backtype.storm.topology.OutputFieldsDeclarer;
@@ -23,6 +18,11 @@ import org.slf4j.LoggerFactory;
 import twitter4j.Status;
 import twitter4j.URLEntity;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
+
 /**
  * Breaks each tweet into words and calculates the sentiment of each tweet and assocaites the sentiment value to the State
  * and logs the same to the console and also logs to the file.
@@ -31,7 +31,7 @@ import twitter4j.URLEntity;
  */
 public final class SentimentCalculatorBolt extends BaseRichBolt {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SentimentCalculatorBolt.class);
-	private static final long serialVersionUID = -713541667509574750L;
+	private static final long serialVersionUID = -5094673458112825122L;
 
 	/**
 	 * Interval between logging the output.
@@ -71,8 +71,7 @@ public final class SentimentCalculatorBolt extends BaseRichBolt {
 		}
 
 		runCounter = 0;
-		stopwatch = new Stopwatch();
-		stopwatch.start();
+		stopwatch = Stopwatch.createStarted();
 	}
 
 	@Override
@@ -84,11 +83,10 @@ public final class SentimentCalculatorBolt extends BaseRichBolt {
 	public final void execute(final Tuple input) {
 		final String state = (String) input.getValueByField("state");
 		final Status status = (Status) input.getValueByField("tweet");
-		final int sentimentOfTweet = getSentimentOfTweet(status);
+		final int sentimentCurrentTweet = getSentimentOfTweet(status);
 
-		Integer previousSentiment = stateSentimentMap.get(state);
-		previousSentiment = (null == previousSentiment) ? sentimentOfTweet : previousSentiment + sentimentOfTweet;
-		stateSentimentMap.put(state, previousSentiment);
+		final int sentimentUpdated = stateSentimentMap.getOrDefault(state, 0) + sentimentCurrentTweet;
+		stateSentimentMap.put(state, sentimentUpdated);
 
 		if (logIntervalInSeconds <= stopwatch.elapsed(TimeUnit.SECONDS)) {
 			logSentimentsOfStates();
