@@ -95,5 +95,5 @@ If you find any issues, please report them either raising an [issue](https://git
 Appreciate your help. Thanks!
 
 ## License
-Copyright &copy; 2013-215 Prashanth Babu.<br>
+Copyright &copy; 2013-2016 Prashanth Babu.<br>
 Licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
